@@ -44,4 +44,4 @@ if respuesta:
 else:
     st.write("No se pudo obtener una respuesta. Por favor, revise los mensajes de error e inténtelo de nuevo.")
 else:
-st.write("Por favor, ingrese una consulta.")
+    st.write("Por favor, ingrese una consulta.")
