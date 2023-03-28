@@ -12,9 +12,9 @@ url_perplexity = "https://api.perplexity.ai/completions"
 # Función para realizar consultas en el API de OpenAI y perplexity.ai
 def buscar_legislacion_guatemala(query):
     payload = {
-        "model": "gpt-3.5-turbo",
+        "model": "text-dainci-003",
         "prompt": f"Consulta sobre legislación guatemalteca: {query}",
-        "ppl_api_key": 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,
+        "ppl_api_key": openai.api.key,
         "max_tokens": 2048,
         "temperature": 0,
         "top_p": 1,
