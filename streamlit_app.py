@@ -14,7 +14,7 @@ def buscar_legislacion_guatemala(query):
     payload = {
         "model": "gpt-3.5-turbo",
         "prompt": f"Consulta sobre legislación guatemalteca: {query}",
-        "ppl_api_key": openai.api_key,
+        "ppl_api_key": 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,
         "max_tokens": 2048,
         "temperature": 0,
         "top_p": 1,
