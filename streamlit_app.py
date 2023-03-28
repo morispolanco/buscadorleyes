@@ -7,31 +7,30 @@ import requests
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # URL del buscador perplexity.ai
-url_perplexity = "https://api.perplexity.ai"
+url_perplexity = "https://api.perplexity.ai/search"
 
 # Función para realizar consultas en el API de OpenAI y perplexity.ai
 def buscar_legislacion_guatemala(query):
     payload = {
-        "query": f"Consulta sobre legislación guatemalteca: {query}",
-        "model": "text-davinci-003",
-        "num_results": 1,
-        "max_tokens": 100,
-        "temperature": 0.5
+        "model": "gpt-3.5-turbo",
+        "input": f"Consulta sobre legislación guatemalteca: {query}",
+        "ppl_api_key": openai.api_key
     }
-    headers = {"Authorization": f"Bearer {openai.api_key}"}
+    headers = {"Content-Type": "application/json"}
     response = requests.post(url_perplexity, json=payload, headers=headers)
-    
+
     try:
         respuesta = response.json()["results"][0]["answer"]["text"].strip()
     except KeyError:
         st.write("Error en la respuesta del API. Por favor, inténtalo de nuevo.")
         st.write("Respuesta completa del API:", response.json())
         respuesta = None
-    
+
     return respuesta
 
+# Diseño de la aplicación de Streamlit
 st.title("Buscador de Legislación Guatemalteca")
-st.write("Ingrese su consulta relacionada con la legislación de Guatemala y obtenga respuestas usando la API de OpenAI y el buscador perplexity.ai.")
+st.write("Ingrese su consulta relacionada con la legislación de Guatemala.")
 
 consulta = st.text_input("Consulta:")
 
