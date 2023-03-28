@@ -35,7 +35,7 @@ st.write("Ingrese su consulta relacionada con la legislación de Guatemala y obt
 consulta = st.text_input("Consulta:")
 
 if consulta:
-st.write("Buscando…")
+    st.write("Buscando…")
 respuesta = buscar_legislacion_guatemala(consulta)
 
 if respuesta:
