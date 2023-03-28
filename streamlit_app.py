@@ -13,8 +13,20 @@ url_perplexity = "https://api.perplexity.ai/search"
 def buscar_legislacion_guatemala(query):
     payload = {
         "model": "gpt-3.5-turbo",
-        "input": f"Consulta sobre legislación guatemalteca: {query}",
-        "ppl_api_key": openai.api_key
+        "prompt": f"Consulta sobre legislación guatemalteca: {query}",
+        "ppl_api_key": openai.api_key,
+        "max_tokens": 2048,
+        "temperature": 0,
+        "top_p": 1,
+        "n": 1,
+        "stream": False,
+        "logprobs": 0,
+        "echo": True,
+        "stop": None,
+        "presence_penalty": 0,
+        "frequency_penalty": 1,
+        "best_of": 1,
+        "logit_bias": {}
     }
     headers = {"Content-Type": "application/json"}
     response = requests.post(url_perplexity, json=payload, headers=headers)
@@ -27,21 +39,3 @@ def buscar_legislacion_guatemala(query):
         respuesta = None
 
     return respuesta
-
-# Diseño de la aplicación de Streamlit
-st.title("Buscador de Legislación Guatemalteca")
-st.write("Ingrese su consulta relacionada con la legislación de Guatemala.")
-
-consulta = st.text_input("Consulta:")
-
-if consulta:
-    st.write("Buscando…")
-    respuesta = buscar_legislacion_guatemala(consulta)
-    
-    if respuesta:
-        st.write("Respuesta:")
-        st.write(respuesta)
-    else:
-        st.write("No se pudo obtener una respuesta. Por favor, revise los mensajes de error e inténtelo de nuevo.")
-else:
-    st.write("Por favor, ingrese una consulta.")
