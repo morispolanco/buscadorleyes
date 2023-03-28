@@ -31,7 +31,7 @@ consulta = st.text_input("Consulta:")
 if consulta:
     st.write("Buscando...")
     respuesta = buscar_legislacion_guatemala(consulta)
-st.write("Respuesta:")
-st.write(respuesta)
-    else:
-st.write("Por favor, ingrese una consulta.")
+    st.write("Respuesta:")
+    st.write(respuesta)
+else:
+    st.write("Por favor, ingrese una consulta.")
