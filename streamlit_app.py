@@ -33,5 +33,5 @@ if consulta:
     respuesta = buscar_legislacion_guatemala(consulta)
 st.write("Respuesta:")
 st.write(respuesta)
-else:
+    else:
 st.write("Por favor, ingrese una consulta.")
