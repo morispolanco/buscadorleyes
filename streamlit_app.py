@@ -12,7 +12,7 @@ url_perplexity = "https://api.perplexity.ai/completions"
 # Función para realizar consultas en el API de OpenAI y perplexity.ai
 def buscar_legislacion_guatemala(query):
     payload = {
-        "model": "text-dainci-003",
+        "model": "gpt-3.5-turbo",
         "prompt": f"Consulta sobre legislación guatemalteca: {query}",
         "ppl_api_key": openai.api_key,
         "max_tokens": 2048,
@@ -28,11 +28,11 @@ def buscar_legislacion_guatemala(query):
         "best_of": 1,
         "logit_bias": {}
     }
-    headers = {"Content-Type": "application/json"}
+    headers = {"Content-Type": "application/json", "Accept": "application/json"}
     response = requests.post(url_perplexity, json=payload, headers=headers)
-    
+
     try:
-        respuesta = response.json()["results"][0]["answer"]["text"].strip()
+        respuesta = response.json()["choices"][0]["text"].strip()
     except KeyError:
         st.write("Error en la respuesta del API. Por favor, inténtalo de nuevo.")
         st.write("Respuesta completa del API:", response.json())
@@ -46,7 +46,7 @@ st.write("Ingrese su consulta relacionada con la legislación de Guatemala y obt
 consulta = st.text_input("Consulta:")
 
 if consulta:
-    st.write("Buscando…")
+    st.write("Buscando...")
     respuesta = buscar_legislacion_guatemala(consulta)
     
     if respuesta:
