@@ -7,7 +7,7 @@ import requests
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # URL del buscador perplexity.ai
-url_perplexity = "https://api.perplexity.ai/search"
+url_perplexity = "https://perplexity.ai"
 
 # Función para realizar consultas en el API de OpenAI y perplexity.ai
 def buscar_legislacion_guatemala(query):
