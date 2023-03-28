@@ -30,15 +30,18 @@ def buscar_legislacion_guatemala(query):
 
     return respuesta
 
-# Diseño de la aplicación de Streamlit
-st.title("Buscador de Legislación Guatemalteca")
-st.write("Ingrese su consulta relacionada con la legislación de Guatemala y obtenga respuestas usando la API de OpenAI y el buscador perplexity.ai.")
-consulta = st.text_input("Consulta:")
+st.title(“Buscador de Legislación Guatemalteca”)
+st.write(“Ingrese su consulta relacionada con la legislación de Guatemala y obtenga respuestas usando la API de OpenAI y el buscador perplexity.ai.”)
+consulta = st.text_input(“Consulta:”)
 
 if consulta:
-    st.write("Buscando...")
-    respuesta = buscar_legislacion_guatemala(consulta)
+st.write(“Buscando…”)
+respuesta = buscar_legislacion_guatemala(consulta)
+
+if respuesta:
     st.write("Respuesta:")
     st.write(respuesta)
 else:
-    st.write("Por favor, ingrese una consulta.")
+    st.write("No se pudo obtener una respuesta. Por favor, revise los mensajes de error e inténtelo de nuevo.")
+else:
+st.write(“Por favor, ingrese una consulta.”)
