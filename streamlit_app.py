@@ -13,14 +13,21 @@ url_perplexity = "https://api.perplexity.ai/search"
 def buscar_legislacion_guatemala(query):
     payload = {
         "query": f"Consulta sobre legislación guatemalteca: {query}",
-        "model": "gpt-3.5-turbo",
+        "model": "text-davinci-003",
         "num_results": 1,
         "max_tokens": 100,
         "temperature": 0.5
     }
     headers = {"Authorization": f"Bearer {openai.api_key}"}
     response = requests.post(url_perplexity, json=payload, headers=headers)
-    respuesta = response.json()["results"][0]["answer"]["text"].strip()
+
+    try:
+        respuesta = response.json()["results"][0]["answer"]["text"].strip()
+    except KeyError:
+        st.write("Error en la respuesta del API. Por favor, inténtalo de nuevo.")
+        st.write("Respuesta completa del API:", response.json())
+        respuesta = None
+
     return respuesta
 
 # Diseño de la aplicación de Streamlit
