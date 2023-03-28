@@ -14,7 +14,7 @@ def buscar_legislacion_guatemala(query):
     payload = {
         "model": "text-dainci-003",
         "prompt": f"Consulta sobre legislación guatemalteca: {query}",
-        "ppl_api_key": openai.api.key,
+        "ppl_api_key": openai.api_key,
         "max_tokens": 2048,
         "temperature": 0,
         "top_p": 1,
